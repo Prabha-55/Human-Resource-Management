@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('10.jpg'); /* Replace with the path to your background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .login-container {
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.9); /* Slight transparency for better readability */
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-form label {
+            margin-bottom: 10px;
+        }
+
+        .login-form input,
+        .login-form select {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-form button {
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background-color: #0056b3;
+        }
+
+        .login-message {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .signup-message {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .signup-message a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .signup-message a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .login-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Login Form -->
+        <form class="login-form" onsubmit="return handleLogin()">
+            <h2>Login</h2>
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+            <label for="role">Role:</label>
+            <select id="role" name="role" required>
+                <option value="admin">Admin</option>
+                <option value="manager">Manager</option>
+                <option value="employee">Employee</option>
+            </select>
+
+            <button type="submit">Login</button>
+            <p class="login-message">Login as Admin | Manager | Employee</p>
+        </form>
+
+        <!-- Sign Up Section -->
+        <div class="signup-message">
+            <p>Don't have an account? <a href="signup.html">Create a new account</a></p>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value.toLowerCase();
+
+            if (username === "admin" && password === "123" && role === "admin") {
+                window.location.href = "admin_panel.html";
+            } else if (username === "manager" && password === "456" && role === "manager") {
+                window.location.href = "manager.html";
+            } else if (username === "employee" && password === "789" && role === "employee") {
+                window.location.href = "dashboard.html";
+            } else {
+                alert("Invalid credentials. Please try again.");
+            }
+
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRM Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 15%;
+            background: #2c3e50;
+            color: white;
+            position: fixed;
+            height: 100%;
+            padding: 45px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+           padding: 10px;
+        }
+
+        .sidebar ul li {
+           margin: 40px 0;
+        }
+
+        .sidebar ul li a {
+            color: rgb(145, 134, 134);
+            text-decoration: none;
+            font-size: 18px;
+            display: block;;
+        }
+         .sidebar a:hover {
+            color: white;
+        }
+		
+        .main-content {
+            margin-left: 21%;
+            padding: 20px;
+           
+        }
+
+        .header {
+            background: #34495e;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 30px;
+        }
+		
+		
+
+        .card {
+            display: inline-block;
+            width: 30%;
+            margin: 10px;
+            padding: 15px;
+            background: #ecf0f1;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+			
+        }
+
+        .card h4 {
+            margin: 0;
+        }
+
+        .card p {
+            margin: 5px 0;
+			color: #FF0000;
+        
+        }
+
+        .btn {
+            padding: 10px 15px;
+            background: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #3498db;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile img {
+            width: 100px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid #000000;
+        }
+
+        .circle {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+		/* Media Queries */
+
+        /* Tablets */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+                padding: 10px;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .card {
+                width: 45%;
+                margin: 10px auto;
+            }
+
+            .profile {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile img {
+                width: 80px;
+                height: 80px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            .sidebar ul li {
+                margin: 10px 0;
+            }
+
+            .sidebar ul li a {
+                font-size: 16px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .section h3 {
+                font-size: 20px;
+            }
+
+            .card {
+                width: 100%;
+                margin: 10px auto;
+            }
+
+            .btn {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+        
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>HRM System</h2>
+        <ul>
+           
+            <li><a href=>Dashboard</a></li>
+            <li><a href="manage emp.html">Manage Employees</a></li>
+            <li><a href="view report.html">View Reports</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Welcome to Admin Panel</h1>
+        </div>
+
+        <div class="section profile-section">
+            <h3>Profile Overview</h3>
+            <div class="profile">
+                <img src="11.jpeg.jpg" alt="Profile Picture">
+                <div>
+                    <p><strong>Name:</strong> John Jayakodi</p>
+                    <p><strong>Position:</strong> Admin</p>
+                </div>
+            </div>
+        </div>
+ <div class="overview">
+            <div class="card">
+                <h3> Total Employees</h3>
+                <p><b>120</p></b>
+            </div>
+            <div  class="card">
+                <h3>Report Generated</h3>
+                <p><b>56</p></b>
+            </div>
+           
+            <div  class="card">
+                <h3>Notifications</h3>
+                <p><b>3 New</p></b>
+            </div>
+        
+		
+		   <div  class="card">
+                <h3> Pending Requests</h3>
+                <p><b>12</p>
+				</div>
+            </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 HRM System. All rights reserved.</p>
+    </div>
+   
+</body>
+</html>

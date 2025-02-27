@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Employees</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+               .sidebar {
+            width: 15%;
+            background: #2c3e50;
+            color: white;
+            position: fixed;
+            height: 100%;
+            padding: 45px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 10px;
+        }
+
+        .sidebar ul li {
+            margin: 40px 0;
+        }
+
+        .sidebar ul li a {
+            color: rgb(145, 134, 134);
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            color: white;
+        }
+
+        .container {
+            width: 800px;
+            margin: 60px;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-left: 30%;
+            
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .actions button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-container {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .form-container form input {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container form button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-container form button:hover {
+            background-color: #0056b3;
+        }
+		
+		  .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            margin-top: auto;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+		
+		 @media (max-width: 480px) {
+            header {
+                padding: 15px 0; /* Reduce header padding */
+            }
+            h1 {
+                font-size: 20px; /* Further adjust font size */
+            }
+            .container {
+                padding: 15px; /* Further reduce padding */
+            }
+            button {
+                padding: 12px; /* Adjust button padding */
+            }
+        }
+    </style>
+</head>
+<body>
+        <div class="sidebar">
+        <h2>HRM System</h2>
+        <ul>
+            <li><a href="admin panel.html">Dashboard</a></li>
+            <li><a href="manage emp.html">Manage Employees</a></li>
+            <li><a href="view report.html">View Reports</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h2>Manage Employees</h2>
+        <button onclick="showForm('add')">Add Employee</button><br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="employee-table">
+                <!-- Employee data dynamically added here -->
+            </tbody>
+        </table>
+        <div class="form-container" id="employee-form">
+            <form id="form">
+                <input type="hidden" id="employee-id">
+                <input type="text" id="employee-name" placeholder="Name" required>
+                <input type="text" id="employee-role" placeholder="Role" required>
+                <button type="button" onclick="submitForm()">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let employees = [
+            { id: 1, name: "Rashmi Samadara", role: "Manager" },
+            { id: 2, name: "Kasun Perera", role: "Employee" },
+			{ id: 3, name: "Imna Isthikar", role: "Manager" },
+            { id: 4, name: "Ashif Mohammed", role: "Employee" },
+			{ id: 5, name: "Jayakodi Bandara", role: "Manager" },
+            { id: 6, name: "Prabha Samarawikrama", role: "Employee" },
+			{ id: 7, name: "Dilhari Menaka", role: "Manager" },
+            { id: 8, name: "Bandara ", role: "Employee" }
+        ];
+
+        function renderEmployees() {
+            const tableBody = document.getElementById('employee-table');
+            tableBody.innerHTML = '';
+            employees.forEach((emp) => {
+                tableBody.innerHTML += `
+                    <tr>
+                        <td>${emp.id}</td>
+                        <td>${emp.name}</td>
+                        <td>${emp.role}</td>
+                        <td class="actions">
+                            <button onclick="editEmployee(${emp.id})">Edit</button>
+                            <button onclick="deleteEmployee(${emp.id})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        function showForm(action, id = null) {
+            const form = document.getElementById('employee-form');
+            form.style.display = 'block';
+            if (action === 'add') {
+                document.getElementById('form').reset();
+            } else if (action === 'edit') {
+                const employee = employees.find((emp) => emp.id === id);
+                document.getElementById('employee-id').value = employee.id;
+                document.getElementById('employee-name').value = employee.name;
+                document.getElementById('employee-role').value = employee.role;
+            }
+        }
+
+        function submitForm() {
+            const id = document.getElementById('employee-id').value;
+            const name = document.getElementById('employee-name').value;
+            const role = document.getElementById('employee-role').value;
+
+            if (id) {
+                const index = employees.findIndex((emp) => emp.id == id);
+                employees[index] = { id: Number(id), name, role };
+            } else {
+                employees.push({ id: employees.length + 1, name, role });
+            }
+            renderEmployees();
+            document.getElementById('employee-form').style.display = 'none';
+        }
+
+        function editEmployee(id) {
+            showForm('edit', id);
+        }
+
+        function deleteEmployee(id) {
+            employees = employees.filter((emp) => emp.id !== id);
+            renderEmployees();
+        }
+
+        renderEmployees();
+    </script>
+	
+	
+
+</body>
+</html>
+</body>
+</html>

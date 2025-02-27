@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRM Eployee Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        
+        .sidebar {
+            width: 15%;
+            background: #2c3e50;
+            color: white;
+            position: fixed;
+            height: 100%;
+            padding: 45px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 10px;
+        }
+
+        .sidebar ul li {
+            margin: 40px 0;
+        }
+
+        .sidebar ul li a {
+            color: rgb(145, 134, 134);
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            color: white;
+        }
+
+        .main-content {
+            margin-left: 25%;
+            padding: 20px;
+        }
+
+        .header {
+            background: #34495e;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 30px;
+        }
+
+        .card {
+            display: inline-block;
+            width: 30%;
+            margin: 10px;
+            padding: 15px;
+            background: #ecf0f1;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+        }
+
+        .card h4 {
+            margin: 0;
+        }
+
+        .card p {
+            margin: 5px 0;
+        }
+
+        .btn {
+            padding: 10px 15px;
+            background: #2980b9;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #3498db;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #2980b9;
+        }
+
+        .circle {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+		
+		 /* Table styles for attendance */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #34495e;
+            color: white;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+
+       /* Media Queries */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: 20%;
+            }
+
+            .main-content {
+                margin-left: 22%;
+            }
+
+            .card {
+                width: 45%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+                padding: 20px;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .card {
+                width: 90%;
+                margin: 10px auto;
+            }
+
+            .profile {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .profile img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .header {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar ul li {
+                margin: 20px 0;
+            }
+
+            .sidebar ul li a {
+                font-size: 16px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .section h3 {
+                font-size: 24px;
+            }
+
+            .btn {
+                padding: 8px 10px;
+            }
+        }
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+ <div class="sidebar">
+        <h2>Employee Panel</h2>
+        <ul>
+            <li><a href="employee.html">Dashboard</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="attendance.html">Attendance</a></li>
+            <li><a href="payroll.html">Payroll</a></li>
+            <li><a href="index.html">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h1>Welcome to Employee Panel</h1>
+        </div>
+
+        <div class="section" id="profile">
+            <h3>Profile</h3>
+            <div class="profile">
+                <img src="profile.jfif.jpg" alt="Profile Picture">
+                <div>
+                    <p><strong>Name:</strong> John Doe</p>
+                    <p><strong>Position:</strong> Software Engineer</p>
+                    <p><strong>Department:</strong> IT</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section" id="attendance">
+            <h3>Attendance</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2025-01-01</td>
+                        <td>Present</td>
+                    </tr>
+                    <tr>
+                        <td>2025-01-02</td>
+                        <td>Absent</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section" id="payroll">
+            <h3>Payroll Information</h3>
+            <p><strong>Basic Salary:</strong> $4,000</p>
+            <p><strong>Allowances:</strong> $1,200</p>
+            <p><strong>Total:</strong> $5,200</p>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 HRM System. All rights reserved.</p>
+    </div>
+   
+</body>
+</html>
